@@ -1,3 +1,3 @@
 # project-2
-data analyst website
+data analyst website /n
 run venv: .\venv\Scripts\activate 
