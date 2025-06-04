@@ -87,7 +87,7 @@ class Backup(models.Model):
     Kich_Thuoc = models.PositiveIntegerField()
     Note = models.TextField(blank=True)
 
-class ThoiGianBieu(models.Model):
+class ThoiKhoaBieu(models.Model):
     NGAY_CHOICES = [
         ('thu2', 'Thứ 2'),
         ('thu3', 'Thứ 3'),
@@ -107,7 +107,6 @@ class HoatDong(models.Model):
     User = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     Hanh_dong = models.TextField()
     Thoi_Gian = models.DateTimeField(auto_now_add=True)
-    metadata = models.JSONField(blank=True, null=True)
 
 class LsChuyenLop(models.Model):
     HS = models.ForeignKey(HocSinh, on_delete=models.CASCADE)
