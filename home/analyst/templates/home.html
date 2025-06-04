@@ -1,13 +1,160 @@
+{% load static tailwind_tags %}
 <!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Home page</title>
+    {% tailwind_css %}
   </head>
-  <body>
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+  <body class="bg-gray-100 min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-[#2A3A8B] shadow py-4 px-4 sm:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+        <div class="flex items-center space-x-3">
+          <img src="{% static 'your-logo.png' %}" alt="Logo" class="h-10 w-10 inline-block"/>
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold text-white">Hệ Thống Quản Lý Dữ Liệu</span>
+            <span class="text-lg text-gray-300">Trường THPT ABC</span>
+          </div>
+        </div>
+        <ul class="flex flex-wrap justify-center space-x-4 sm:space-x-8">
+          <li>
+            <a href="{% url 'home' %}" class="text-xl font-semibold text-white hover:underline">Trang Chủ</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}" class="text-xl font-semibold text-white hover:underline">Học Sinh</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}" class="text-xl font-semibold text-white hover:underline">Giáo Viên</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}" class="text-xl font-semibold text-white hover:underline">Báo Cáo</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}" class="text-xl font-semibold text-white hover:underline">Cài Đặt</a>
+          </li>
+        </ul>
+        <div>
+          <a href="{% url 'home' %}" class="text-xl font-semibold text-white hover:underline">Admin</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Top Stats -->
+    <section class="w-full flex justify-center mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-4">
+        <!-- Tổng Học Sinh -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center justify-between">
+          <div>
+            <span class="text-gray-500 text-sm">Tổng Học Sinh</span>
+            <p class="text-2xl font-extrabold text-[#2A3A8B] mt-1">{{ SoHS }}</p>
+          </div>
+          <div class="bg-blue-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-blue-400 rounded-md w-6 h-6"></div>
+          </div>
+        </div>
+        <!-- Giáo Viên -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center justify-between">
+          <div>
+            <span class="text-gray-500 text-sm">Giáo Viên</span>
+            <p class="text-2xl font-extrabold text-green-600 mt-1">{{ SoGV }}</p>
+          </div>
+          <div class="bg-green-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-green-400 rounded-md w-6 h-6"></div>
+          </div>
+        </div>
+        <!-- Lớp Học -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center justify-between">
+          <div>
+            <span class="text-gray-500 text-sm">Lớp Học</span>
+            <p class="text-2xl font-extrabold text-purple-600 mt-1">{{ SoLop }}</p>
+          </div>
+          <div class="bg-purple-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-purple-400 rounded-md w-6 h-6"></div>
+          </div>
+        </div>
+        <!-- Môn Học -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center justify-between">
+          <div>
+            <span class="text-gray-500 text-sm">Môn Học</span>
+            <p class="text-2xl font-extrabold text-orange-600 mt-1">{{ SoMon }}</p>
+          </div>
+          <div class="bg-orange-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-orange-400 rounded-md w-6 h-6"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="w-full flex justify-center mt-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-7xl px-4">
+        <!-- Hoạt Động Gần Đây -->
+        <div class="lg:col-span-2 bg-white shadow rounded-lg p-6 min-h-[200px]">
+          
+        </div>
+        <!-- Thao Tác Nhanh -->
+        <div class="bg-white shadow rounded-lg p-6">
+          <h2 class="font-bold text-lg mb-4">Thao Tác Nhanh</h2>
+          <div class="space-y-4">
+            <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded">Thêm Học Sinh Mới</button>
+            <button class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded">Tạo Lớp Học Mới</button>
+            <button class="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 rounded">Nhập Điểm Số</button>
+            <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded">Tạo Thời Khóa Biểu</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Công Cụ Quản Lý Dữ Liệu -->
+    <section class="w-full flex justify-center mt-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-7xl px-4">
+        <!-- Import Dữ Liệu -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center space-x-4">
+          <div class="bg-blue-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-blue-400 rounded-md w-8 h-8"></div>
+          </div>
+          <div>
+            <div class="font-semibold">Import Dữ Liệu</div>
+            <div class="text-gray-500 text-sm">Nhập dữ liệu từ file Excel hoặc CSV</div>
+            <button class="mt-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">Chọn File</button>
+          </div>
+        </div>
+        <!-- Export Báo Cáo -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center space-x-4">
+          <div class="bg-green-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-green-400 rounded-md w-8 h-8"></div>
+          </div>
+          <div>
+            <div class="font-semibold">Export Báo Cáo</div>
+            <div class="text-gray-500 text-sm">Xuất báo cáo dưới dạng PDF hoặc Excel</div>
+            <button class="mt-2 px-4 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm">Tạo Báo Cáo</button>
+          </div>
+        </div>
+        <!-- Sao Lưu Dữ Liệu -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center space-x-4">
+          <div class="bg-blue-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-blue-400 rounded-md w-8 h-8"></div>
+          </div>
+          <div>
+            <div class="font-semibold">Sao Lưu Dữ Liệu</div>
+            <div class="text-gray-500 text-sm">Sao lưu toàn bộ dữ liệu hệ thống</div>
+            <button class="mt-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">Sao Lưu</button>
+          </div>
+        </div>
+        <!-- Phân Tích Dữ Liệu -->
+        <div class="bg-white shadow rounded-lg p-6 flex items-center space-x-4">
+          <div class="bg-orange-100 rounded-xl p-3 flex items-center justify-center">
+            <div class="bg-orange-400 rounded-md w-8 h-8"></div>
+          </div>
+          <div>
+            <div class="font-semibold">Phân Tích Dữ Liệu</div>
+            <div class="text-gray-500 text-sm">Tạo biểu đồ và thống kê chi tiết</div>
+            <button class="mt-2 px-4 py-1 bg-orange-500 text-white rounded hover:bg-orange-600 text-sm">Phân Tích</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
